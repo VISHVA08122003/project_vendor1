@@ -3,6 +3,8 @@ package com.example.spring.project.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,17 +22,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.example.spring.project.model.ProjectModel;
-import com.example.spring.service.ProjectService;
+import com.example.spring.project.service.ProjectService;
 
 @RestController
 @RequestMapping("api/v1/user")
 public class ProjectController {
+	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 	
 	@Autowired
 	private ProjectService projectService;	
 	@GetMapping("/getUser")
-    public ResponseEntity<ProjectModel> getUser(@RequestBody ProjectModel user){
-		return ResponseEntity.status(200).body(user);
+    public ResponseEntity<List<ProjectModel>> getUser(){
+		
+		System.out.println("SOP");
+		logger.info("This is bucks bunny");
+		logger.debug("debug");
+		logger.warn("warn");
+		logger.error("err");
+		System.out.println("hi");
+		return ResponseEntity.status(200).body(projectService.getUser());
 	}
 
 
